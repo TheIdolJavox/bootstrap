@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="bootstrap_css/bootstrap.min.css">
+    <script src="bootstrap_js/jquery.min.js"></script>
+    <script src="bootstrap_js/popper.min.js"></script>
+    <script src="bootstrap_js/bootstrap.min.js"></script>
+    <style>
+        /* Estilo personalizado para la pantalla de afuera */
+        body {
+            background-color: black; /* Fondo negro para la pantalla de afuera */
+            color: white; /* Texto blanco */
+        }
+        /* Estilo personalizado para la calculadora */
+        .calculator {
+            max-width: 350px; /* Aumentamos el ancho para acomodar las teclas a la derecha */
+            margin: 0 auto;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #f2f2f2; /* Color original de la calculadora */
+        }
+        .calculator .btn {
+            font-size: 24px;
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+        }
+        .calculator #display {
+            background-color: black; /* Fondo negro para la pantalla */
+            color: white; /* Texto blanco */
+            border: none;
+        }
+        /* Estilo para el texto "España" fuera de la calculadora */
+        #spain-text {
+            text-align: center;
+            color: white; /* Texto blanco */
+        }
+        /* Estilo para las filas adicionales de botones */
+        .calculator-row {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 id="spain-text">España</h2> <!-- Texto "España" fuera de la calculadora -->
+                <div class="card calculator">
+                    <div class="card-header">Calculadora</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input type="text" id="display" class="form-control" readonly>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9"> <!-- 9 columnas para los números -->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <button class="btn btn-secondary" onclick="appendToDisplay('7')">7</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-secondary" onclick="appendToDisplay('8')">8</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-secondary" onclick="appendToDisplay('9')">9</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-secondary" onclick="appendToDisplay('4')">4</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-secondary" onclick="appendToDisplay('5')">5</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-secondary" onclick="appendToDisplay('6')">6</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-secondary" onclick="appendToDisplay('1')">1</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-secondary" onclick="appendToDisplay('2')">2</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-secondary" onclick="appendToDisplay('3')">3</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-warning" onclick="clearDisplay()">C</button>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-secondary" onclick="appendToDisplay('0')">0</button>    
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-success" onclick="calculateResult()">=</button>    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3"> <!-- 3 columnas para las operaciones y botones adicionales -->
+                                <div class="col-md-12">
+                                    <button class="btn btn-warning" onclick="appendToDisplay('/')">/</button>
+                                    <button class="btn btn-warning" onclick="appendToDisplay('*')">*</button>
+                                    <button class="btn btn-warning" onclick="appendToDisplay('-')">-</button>
+                                    <button class="btn btn-warning" onclick="appendToDisplay('+')">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculateResult() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = 'Error';
+            }
+        }
+    </script>
+</body>
+</html>
